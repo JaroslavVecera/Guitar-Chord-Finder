@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuitarChordFinder.App">
+    <Application.Resources>
+        <!-- Light colors -->
+        <Color x:Key="LightPrimaryColor">#0075D2</Color>
+        <Color x:Key="LightSecondaryColor">#2196F3</Color>
+        <Color x:Key="LightBackgroundColor">White</Color>
+        <Color x:Key="LightTextColor">Black</Color>
+        <Color x:Key="LightDiagramColor">Black</Color>
+
+        <!-- Dark colors -->
+        <Color x:Key="DarkPrimaryColor">Black</Color>
+        <Color x:Key="DarkBackgroundColor">#111</Color>
+        <Color x:Key="DarkSecondaryColor">#333</Color>
+        <Color x:Key="DarkTextColor">White</Color>
+        <Color x:Key="DarkDiagramColor">#777</Color>
+
+        <!-- Styles -->
+        <Style x:Key="HeaderStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}}" />
+        </Style>
+
+        <Style x:Key="MainStyle" TargetType="StackLayout">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+        </Style>
+
+        <Style x:Key="SearchStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+        </Style>
+
+        <Style TargetType="SearchBar">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" />
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource LightSecondaryColor}}" />
+        </Style>
+        
+        <Style x:Key="LabelStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightSecondaryColor}, Dark={StaticResource DarkSecondaryColor}}" />
+        </Style>
+
+        <Style TargetType="Line">
+            <Setter Property="StrokeThickness" Value="4" />
+            <Setter Property="Stroke"
+                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+        </Style>
+
+        <Style TargetType="Path">
+            <Setter Property="Fill"
+                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+        </Style>
+
+        <Style TargetType="Polyline">
+            <Setter Property="StrokeThickness" Value="4" />
+            <Setter Property="Stroke"
+                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+        </Style>
+
+        <Style x:Key="FullCircleStyle" TargetType="Ellipse">
+            <Setter Property="Fill"
+                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+        </Style>
+
+        <Style TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+        </Style>
+
+        <Style x:Key="EmptyCircleStyle" TargetType="Ellipse">
+            <Setter Property="StrokeThickness" Value="4" />
+            <Setter Property="Stroke"
+                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+        </Style>
+    </Application.Resources>
+</Application>

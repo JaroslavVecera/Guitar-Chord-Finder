@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:guitarchordfinder="clr-namespace:GuitarChordFinder"
+             x:Class="GuitarChordFinder.MainPage">
+    <ContentPage.BindingContext>
+        <guitarchordfinder:MainViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Spacing="0"  Style="{StaticResource MainStyle}">
+        <Frame Style="{StaticResource HeaderStyle}" Padding="8" CornerRadius="0">
+            <Frame  Style="{StaticResource SearchStyle}" Padding="0" Margin="4,2" CornerRadius="5">
+                <SearchBar 
+                       Text="{Binding Search}"
+                       SearchCommand="{Binding Command}"
+                       PlaceholderColor="#bbb"
+                       Placeholder="Search chords...">
+                </SearchBar>
+            </Frame>
+        </Frame>
+        <Frame IsVisible="{Binding LabelVisibility}" CornerRadius="0" Style="{StaticResource LabelStyle}" Padding="5">
+            <Label HorizontalOptions="StartAndExpand" Padding="65,0" TextColor="White" FontSize="20" Text="{Binding Label}" />
+        </Frame>
+        <Frame IsVisible="{Binding ErrorLabelVisibility}" CornerRadius="0" BackgroundColor="DarkRed" Padding="5">
+            <Label HorizontalOptions="StartAndExpand" Padding="65,0" TextColor="White" FontSize="20" Text="{Binding ErrorLabel}" />
+        </Frame>
+        <CollectionView x:Name="FingeringsList" ItemsSource="{Binding Fingerings}" SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <guitarchordfinder:FingeringView Margin="0,0,0,40" Xs="{Binding Xs}" Barres="{Binding Barres}"  FullCircles="{Binding FullCircles}" EmptyCircles="{Binding EmptyCircles}" Position="{Binding Position}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+
+</ContentPage>

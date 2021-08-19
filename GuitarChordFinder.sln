@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuitarChordFinder.Android", "GuitarChordFinder\GuitarChordFinder.Android\GuitarChordFinder.Android.csproj", "{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuitarChordFinder", "GuitarChordFinder\GuitarChordFinder\GuitarChordFinder.csproj", "{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA7835C0-22ED-4703-94BD-BACE1F3CC7CC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{692DF3A7-D0C4-43B0-BDF3-D46C0427D55C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4A009B30-6FCE-453B-9F9C-B6E920F25D91}
+	EndGlobalSection
+EndGlobal
