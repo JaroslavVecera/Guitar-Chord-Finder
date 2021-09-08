@@ -41,6 +41,15 @@ namespace GuitarChordFinder
         public static readonly BindableProperty PositionProperty = BindableProperty.Create(
             nameof(Position), typeof(int), typeof(FingeringView), propertyChanged: PositionPropertyChanged);
 
+        public void ForceRedraw()
+        {
+            DrawPosition(Position);
+            DrawXs(Xs);
+            DrawEmptyCircles(EmptyCircles);
+            DrawFullCircles(FullCircles);
+            DrawBarres(Barres);
+        }
+
         public int Position { get; set; }
 
         public static readonly BindableProperty BarresProperty = BindableProperty.Create(

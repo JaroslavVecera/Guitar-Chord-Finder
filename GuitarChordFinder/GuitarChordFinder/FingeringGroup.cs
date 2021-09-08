@@ -1,19 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace GuitarChordFinder
 {
-    public class FingeringGroup
+    public class FingeringGroup : INotifyPropertyChanged
     {
-        public Fingering Full { get; private set; }
-        public List<Fingering> Subsets { get; } = new List<Fingering>();
-        public bool Any { get { return Subsets.Count > 0; } }
+        public Fingering Full { get; set; }
+        public List<Fingering> Subsets { get; set; } = new List<Fingering>();
+        public bool AnySubsets { get { return Subsets.Count > 1; } }
 
         public FingeringGroup(Fingering full)
         {
             Full = full;
+            Add(Full);
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public void Add(Fingering f)
         {
@@ -26,7 +30,7 @@ namespace GuitarChordFinder
             var potSubFrets = p.Frets;
             for (int i = 0; i < fullFrets.Length; i++)
             {
-                if (potSubFrets[i] > -1 && fullFrets[i] == potSubFrets[i])
+                if (potSubFrets[i] > -1 && fullFrets[i] != potSubFrets[i])
                     return false;
             }
             return true;

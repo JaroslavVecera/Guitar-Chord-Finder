@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:guitarchordfinder="clr-namespace:GuitarChordFinder"
-             x:Class="GuitarChordFinder.MainPage">
+             x:Class="GuitarChordFinder.MainPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.BindingContext>
         <guitarchordfinder:MainViewModel />
     </ContentPage.BindingContext>
@@ -23,10 +24,10 @@
         <Frame IsVisible="{Binding ErrorLabelVisibility}" CornerRadius="0" BackgroundColor="DarkRed" Padding="5">
             <Label HorizontalOptions="StartAndExpand" Padding="65,0" TextColor="White" FontSize="20" Text="{Binding ErrorLabel}" />
         </Frame>
-        <CollectionView x:Name="FingeringsList" ItemsSource="{Binding Fingerings}" SelectionMode="None">
+        <CollectionView x:Name="FingeringsList" ItemsSource="{Binding FingeringGroups}" SelectionMode="None" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <guitarchordfinder:FingeringView Margin="0,0,0,40" Xs="{Binding Xs}" Barres="{Binding Barres}"  FullCircles="{Binding FullCircles}" EmptyCircles="{Binding EmptyCircles}" Position="{Binding Position}"/>
+                    <guitarchordfinder:FingeringGroupView AnySubsets="{Binding AnySubsets}" Subsets="{Binding Subsets}" FullChord="{Binding Full}"></guitarchordfinder:FingeringGroupView>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>

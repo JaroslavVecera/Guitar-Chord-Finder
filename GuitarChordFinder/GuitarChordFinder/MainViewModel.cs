@@ -8,7 +8,7 @@ namespace GuitarChordFinder
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        public List<Fingering> Fingerings { get; set; }
+        public List<FingeringGroup> FingeringGroups { get; set; }
         Fret Fret { get; set; } = new Fret(new PatternOptions() { FretRange = 4, MaxFret = 20, RequiredFingers = 4 });
         public string Search { get; set; } = "";
         public RelayCommand Command { get; set; }
@@ -26,7 +26,7 @@ namespace GuitarChordFinder
 
         void CountFingerings(string name)
         {
-            Fingerings = new List<Fingering>();
+            FingeringGroups = new List<FingeringGroup>();
             if (name == "")
             {
                 LabelVisibility = false;
@@ -48,8 +48,7 @@ namespace GuitarChordFinder
 
                 if (patterns != null)
                 {
-                    foreach (var p in patterns.Item1)
-                        Fingerings.Add(new Fingering(p));
+                    GroupFingerings(patterns.Item1);
                     Label = "notes: " + patterns.Item2;
                 }
             }
@@ -58,7 +57,7 @@ namespace GuitarChordFinder
 
         void NotifyChange()
         { 
-            OnPropertyChanged("Fingerings");
+            OnPropertyChanged("FingeringGroups");
             OnPropertyChanged("IsError");
             OnPropertyChanged("LabelVisibility");
             OnPropertyChanged("ErrorLabelVisibility");
@@ -69,19 +68,21 @@ namespace GuitarChordFinder
         void GroupFingerings(List<Pattern> patterns)
         {
             var list = new LinkedList<Pattern>(patterns);
-            while(patterns.Count > 0)
+            while(list.Count > 0)
             {
                 FingeringGroup group = new FingeringGroup(new Fingering(list.First.Value));
-                //FingeringGroups.Add(group);
+                FingeringGroups.Add(group);
                 list.RemoveFirst();
                 if (list.Count == 0)
                     break;
-                for (var n = list.First; n != null; n = n.Next)
+                for (var n = list.First; n != null;)
                 {
-                    if (!group.IsSubset(n.Value))
+                    var currentN = n;
+                    n = n.Next;
+                    if (!group.IsSubset(currentN.Value))
                         continue;
-                    group.Add(new Fingering(n.Value));
-                    list.Remove(n.Value);
+                    group.Add(new Fingering(currentN.Value));
+                    list.Remove(currentN.Value);
                 }
             }
         }

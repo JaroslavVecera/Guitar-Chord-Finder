@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuitarChordFinder.SubsetsPage"
+             xmlns:guitarchordfinder="clr-namespace:GuitarChordFinder"
+             Title="Fingering subsets">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center">
+            <CarouselView VerticalOptions="Start" x:Name="carousel" FlowDirection="LeftToRight" IndicatorView="indicatorView">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <guitarchordfinder:FingeringView Xs="{Binding Xs}" EmptyCircles="{Binding EmptyCircles}" FullCircles="{Binding FullCircles}" Position="{Binding Position}" Barres="{Binding Barres}"></guitarchordfinder:FingeringView>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView x:Name="indicatorView"
+                   IndicatorColor="LightGray"
+                   SelectedIndicatorColor="DarkGray"
+                   IndicatorSize="15"
+                   HorizontalOptions="Center" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

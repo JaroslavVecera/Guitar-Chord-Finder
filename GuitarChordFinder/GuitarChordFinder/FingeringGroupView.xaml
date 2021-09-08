@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuitarChordFinder.FingeringGroupView"
+             xmlns:guitarchordfinder="clr-namespace:GuitarChordFinder">
+  <ContentView.Content>
+      <StackLayout>
+            <guitarchordfinder:FingeringView Margin="0,0,0,2" x:Name="representant"/>
+            <Button Clicked="OnShowSubsets" Text="Show subsets" HorizontalOptions="Center" x:Name="subsetsButton"/>
+      </StackLayout>
+  </ContentView.Content>
+</ContentView>
