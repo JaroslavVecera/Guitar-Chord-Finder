@@ -8,12 +8,11 @@ namespace GuitarChordFinder
 {
     class Fret
     {
-        int[] StringNotes { get; } = new int[] { 4, 9, 14, 19, 23, 28 };
-        public PatternOptions Options { get; private set; }
+        public FingeringOptions Options { get; private set; }
 
         ChordParser Parser { get; } = new ChordParser();
 
-        public Fret(PatternOptions opt)
+        public Fret(FingeringOptions opt)
         {
             Options = opt;
         }
@@ -23,13 +22,13 @@ namespace GuitarChordFinder
             Chord chord = Parser.Parse(symbol);
             if (chord == null)
                 return null;
-            List<int>[] allPositions = new List<int>[6];
+            List<int>[] allPositions = new List<int>[Options.Tuning.Length];
 
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < Options.Tuning.Length; i++)
             {
                 allPositions[i] = new List<int>() { -1 };
                 for (int pos = 0; pos <= Options.MaxFret; pos++)
-                    if (chord.ConcreteFormula.Contains((pos + StringNotes[i]) % 12))
+                    if (chord.ConcreteFormula.Contains((pos + Options.Tuning[i]) % 12))
                         allPositions[i].Add(pos);
             }
             return new Tuple<List<Pattern>, string>(GeneratePatterns(chord, allPositions), chord.GetNotes());
@@ -58,7 +57,7 @@ namespace GuitarChordFinder
         void GeneratePatternsRec(int min, int max, List<int> pattern, List<int>[] positions, List<Pattern> result)
         {
             int newmin = min, newmax = max;
-            if (pattern.Count == 6)
+            if (pattern.Count == Options.Tuning.Length)
                 result.Add(new Pattern(pattern.ToArray()));
             else
             {
@@ -101,7 +100,7 @@ namespace GuitarChordFinder
         bool IsUniform(Pattern p)
         {
             int state = 0;
-            for(int i = 0; i < 6; i++)
+            for(int i = 0; i < Options.Tuning.Length; i++)
                 if ((state % 2 == 0 && p.Frets[i] > -1) || (state % 2 == 1 && p.Frets[i] == -1))
                     state++;
             return state < 3;
@@ -128,7 +127,7 @@ namespace GuitarChordFinder
             List<int> notes = new List<int>();
             for (int i = 0; i < p.Frets.Count(); i++)
                 if (p.Frets[i] > -1)
-                    notes.Add(p.Frets[i] + StringNotes[i]);
+                    notes.Add(p.Frets[i] + Options.Tuning[i]);
             return notes;
         }
     }

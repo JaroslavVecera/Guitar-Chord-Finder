@@ -51,6 +51,7 @@ namespace GuitarChordFinder
 
         void DrawRepresentant(Fingering f)
         {
+            representant.DiagramSize = f.DiagramSize;
             representant.Xs = f.Xs;
             representant.FullCircles = f.FullCircles;
             representant.EmptyCircles = f.EmptyCircles;

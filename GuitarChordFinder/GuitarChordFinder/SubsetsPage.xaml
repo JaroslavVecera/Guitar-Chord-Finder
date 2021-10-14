@@ -9,7 +9,7 @@
             <CarouselView VerticalOptions="Start" x:Name="carousel" FlowDirection="LeftToRight" IndicatorView="indicatorView">
                 <CarouselView.ItemTemplate>
                     <DataTemplate>
-                        <guitarchordfinder:FingeringView Xs="{Binding Xs}" EmptyCircles="{Binding EmptyCircles}" FullCircles="{Binding FullCircles}" Position="{Binding Position}" Barres="{Binding Barres}"></guitarchordfinder:FingeringView>
+                        <guitarchordfinder:FingeringView DiagramSize="{Binding DiagramSize}" Xs="{Binding Xs}" EmptyCircles="{Binding EmptyCircles}" FullCircles="{Binding FullCircles}" Position="{Binding Position}" Barres="{Binding Barres}"></guitarchordfinder:FingeringView>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
             </CarouselView>

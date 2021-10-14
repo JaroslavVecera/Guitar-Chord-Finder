@@ -14,5 +14,10 @@ namespace GuitarChordFinder
         {
             InitializeComponent();
         }
+
+        private void OnSettingsClicked(object sender, EventArgs e)
+        {
+            var task = Navigation.PushAsync(new SettingsPage(((MainViewModel)BindingContext).Options));
+        }
     }
 }

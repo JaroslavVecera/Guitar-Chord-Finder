@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:local="clr-namespace:GuitarChordFinder;assembly=GuitarChordFinder"
+            x:Class="GuitarChordFinder.SettingsPage"
+            Title="Settings">
+    <ContentPage Title="Tuning">
+        <Grid Margin="40">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="80" />
+            </Grid.RowDefinitions>
+            <ScrollView>
+                <StackLayout x:Name="rows" Margin="0,0,0,20"></StackLayout>
+            </ScrollView>
+            <Button Grid.Row="1" Margin="0, 20, 0, 0" BackgroundColor="#18b378" x:Name="addButton" FontSize="Title" CornerRadius="100"  Clicked="OnPlusClicked" TextColor="White" Text="+"></Button>
+        </Grid>
+    </ContentPage>
+    <ContentPage Title="Other">
+        <Label HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 0, 0, 50" FontSize="30" Text="Coming soon"></Label>
+    </ContentPage>
+</TabbedPage>

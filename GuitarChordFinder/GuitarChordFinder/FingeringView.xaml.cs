@@ -22,11 +22,17 @@ namespace GuitarChordFinder
         double _circleSize;
         double _barreBottom;
         double _barreHeight;
+        bool _drawnGrid = false;
 
         public static readonly BindableProperty FullCirclesProperty = BindableProperty.Create(
             nameof(FullCircles), typeof(List<System.Drawing.Point>), typeof(FingeringView), propertyChanged: FullCirclesPropertyChanged);
 
         public List<System.Drawing.Point> FullCircles { get; set; }
+
+        public static readonly BindableProperty DiagramSizeProperty = BindableProperty.Create(
+            nameof(DiagramSize), typeof(Tuple<int, int>), typeof(FingeringView), propertyChanged : DiagramSizePropertyChanged);
+
+        public Tuple<int, int> DiagramSize { get; set; }
 
         public static readonly BindableProperty EmptyCirclesProperty = BindableProperty.Create(
             nameof(EmptyCircles), typeof(List<System.Drawing.Point>), typeof(FingeringView), propertyChanged: EmptyCirclesPropertyChanged);
@@ -43,6 +49,7 @@ namespace GuitarChordFinder
 
         public void ForceRedraw()
         {
+            OnDiagramSizeChanged(DiagramSize);
             DrawPosition(Position);
             DrawXs(Xs);
             DrawEmptyCircles(EmptyCircles);
@@ -60,28 +67,26 @@ namespace GuitarChordFinder
         public FingeringView()
         {
             InitializeComponent();
-            CountConstants();
-            DrawGrid();
         }
 
-        void CountConstants()
+        void CountConstants(int width, int height)
         {
             _screenWidth = Application.Current.MainPage.Width;
             _firstStringX = _screenWidth * 0.2;
             _lastStringX = _screenWidth * 0.8;
-            _lastFretY = _screenWidth * 0.8;
             _firstFretY = _screenWidth * 0.2;
-            _cellSize = _screenWidth * 0.12;
-            _circleSize = _screenWidth * 0.08;
+            _cellSize = _screenWidth * 0.6 / (width - 1);
+            _lastFretY = _firstFretY + (height - 1) * _cellSize;
+            _circleSize = _cellSize * 2 / 3;
             _barreBottom = _cellSize / 4 * 3;
             _barreHeight = _cellSize / 2;
         }
 
-        void DrawGrid()
+        void DrawGrid(int width, int height)
         {
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < width; i++)
                 MakeLine(_firstStringX + i * _cellSize, _firstFretY, _firstStringX + i * _cellSize, _lastFretY);
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < height; i++)
                 MakeLine(_firstStringX, _firstFretY + i * _cellSize, _lastStringX, _firstFretY + i * _cellSize);
         }
 
@@ -166,6 +171,25 @@ namespace GuitarChordFinder
                 return;
             var c = (FingeringView)o;
             c.DrawFullCircles((List<System.Drawing.Point>)newO);
+        }
+
+        private static void DiagramSizePropertyChanged(BindableObject o, object oldO, object newO)
+        {
+            if (newO == null)
+                return;
+            var c = (FingeringView)o;
+            c.OnDiagramSizeChanged((Tuple<int, int>)newO);
+        }
+
+        void OnDiagramSizeChanged(Tuple<int, int> size)
+        {
+            if (_drawnGrid)
+                return;
+            _drawnGrid = true;
+            int width = size.Item1;
+            int height = Math.Max(6, 2 + size.Item2);
+            CountConstants(width, height);
+            DrawGrid(width, height);
         }
 
         private static void EmptyCirclesPropertyChanged(BindableObject o, object oldO, object newO)

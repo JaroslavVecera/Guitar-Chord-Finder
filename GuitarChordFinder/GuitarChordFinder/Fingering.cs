@@ -17,9 +17,12 @@ namespace GuitarChordFinder
         public bool HasBarre { get; set; }
         public List<Barre> Barres { get; set; } = new List<Barre>();
         public Pattern Pattern { get; private set; }
+        public int Width { get; private set; }
+        public Tuple<int, int> DiagramSize { get { return new Tuple<int, int>(Pattern.Size, Width); } }
 
-        public Fingering(Pattern p)
+        public Fingering(Pattern p, int width)
         {
+            Width = width;
             Pattern = p;
             Position = p.Min;
             if (Position <= 2)
@@ -27,7 +30,7 @@ namespace GuitarChordFinder
             int shred = 0;
             if (Position > 0)
                 shred = Position - 1;
-            for (int i = 0; i < 6; i++)
+            for (int i = 0; i < p.Size; i++)
             {
                 if (p.Frets[i] == 0)
                     EmptyCircles.Add(new Point(i, -1));

@@ -18,9 +18,9 @@ namespace GuitarChordFinder
         public int[] ConcreteFormula {
             get
             {
-                var res = Quality.Formula;
-                if (Bass.HasValue && !Quality.Contains((Bass.Value - Root) % 12))
-                    res.Add(Bass.Value - Root);
+                List<int> res = new List<int>(Quality.Formula);
+                if (Bass.HasValue && !Quality.Contains((((Bass.Value - Root) % 12) + 12) % 12))
+                    res.Add((((Bass.Value - Root) % 12) + 12) % 12);
                 return res.Select(x => (x + Root) % 12).ToArray(); } }
 
         public Chord(int root, Quality quality, int? bass)

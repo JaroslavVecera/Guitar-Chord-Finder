@@ -8,9 +8,12 @@ namespace GuitarChordFinder
 {
     public class MainViewModel : INotifyPropertyChanged
     {
+
         public List<FingeringGroup> FingeringGroups { get; set; }
-        Fret Fret { get; set; } = new Fret(new PatternOptions() { FretRange = 4, MaxFret = 20, RequiredFingers = 4 });
+        public FingeringOptions Options { get; private set; } = new FingeringOptions() { FretRange = 4, MaxFret = 20, RequiredFingers = 4 };
+        Fret Fret { get; set; }
         public string Search { get; set; } = "";
+        public string LastSearch { get; set; } = "";
         public RelayCommand Command { get; set; }
         public bool ErrorLabelVisibility { get; set; }
         public bool LabelVisibility { get; set; }
@@ -19,7 +22,9 @@ namespace GuitarChordFinder
 
         public MainViewModel()
         {
-             Command = new RelayCommand(() => CountFingerings(Search));
+            Command = new RelayCommand(() => { CountFingerings(Search); LastSearch = Search; });
+            Options.OnOptionsChanged += () => CountFingerings(LastSearch);
+            Fret = new Fret(Options);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -70,7 +75,7 @@ namespace GuitarChordFinder
             var list = new LinkedList<Pattern>(patterns);
             while(list.Count > 0)
             {
-                FingeringGroup group = new FingeringGroup(new Fingering(list.First.Value));
+                FingeringGroup group = new FingeringGroup(new Fingering(list.First.Value, Options.FretRange));
                 FingeringGroups.Add(group);
                 list.RemoveFirst();
                 if (list.Count == 0)
@@ -81,7 +86,7 @@ namespace GuitarChordFinder
                     n = n.Next;
                     if (!group.IsSubset(currentN.Value))
                         continue;
-                    group.Add(new Fingering(currentN.Value));
+                    group.Add(new Fingering(currentN.Value, Options.FretRange));
                     list.Remove(currentN.Value);
                 }
             }

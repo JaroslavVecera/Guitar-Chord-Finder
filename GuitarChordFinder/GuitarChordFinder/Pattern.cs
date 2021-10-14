@@ -13,6 +13,7 @@ namespace GuitarChordFinder
         public int Max { get { return Frets.Max(); } }
         public int Min { get { return GetMin(); } }
         public bool Barre { get; set; } = false;
+        public int Size { get { return Frets.Length; } }
 
         public Pattern(int[] frets)
         {
@@ -31,7 +32,7 @@ namespace GuitarChordFinder
         public override string ToString()
         {
             string res = "{ " + FretToString(Frets[0]);
-            for (int i = 1; i < 6; i++)
+            for (int i = 1; i < Size; i++)
                 res += ", " + FretToString(Frets[i]);
             return res + " }";
         }
