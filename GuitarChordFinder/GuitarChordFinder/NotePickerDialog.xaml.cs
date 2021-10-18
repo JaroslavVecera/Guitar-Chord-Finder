@@ -39,8 +39,8 @@ namespace GuitarChordFinder
 
         void InitializePickers(int name, int octave)
         { 
-            Tone.Name = name;
-            Tone.Octave = octave;
+            NameChanged(name);
+            OctaveChanged(octave);
             namePicker.Value = name;
             octavePicker.Value = octave;
         }
