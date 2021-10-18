@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="GuitarChordFinder.FingeringView"
              BindingContextChanged="OnBindingContextChanged">
-    <RelativeLayout x:Name="canvas">
+    <RelativeLayout x:Name="canvas" HorizontalOptions="Center">
         <RelativeLayout x:Name="clearableCanvas" />
     </RelativeLayout>
 </ContentView>

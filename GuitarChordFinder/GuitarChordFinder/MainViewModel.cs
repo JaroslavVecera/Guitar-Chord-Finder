@@ -23,8 +23,13 @@ namespace GuitarChordFinder
         public MainViewModel()
         {
             Command = new RelayCommand(() => { CountFingerings(Search); LastSearch = Search; });
-            Options.OnOptionsChanged += () => CountFingerings(LastSearch);
+            Options.OnOptionsChanged += () => Refresh();
             Fret = new Fret(Options);
+        }
+
+        public void Refresh()
+        {
+            CountFingerings(LastSearch);
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
