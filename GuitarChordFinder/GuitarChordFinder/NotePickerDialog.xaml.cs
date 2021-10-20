@@ -34,7 +34,7 @@ namespace GuitarChordFinder
             this.setResultAction = setResultAction;
             namePicker.StepValueChanged += NameChanged;
             octavePicker.StepValueChanged += OctaveChanged;
-            InitializePickers( oldValue.Name, oldValue.Octave);
+            InitializePickers(oldValue.Name, oldValue.Octave);
         }
 
         void InitializePickers(int name, int octave)

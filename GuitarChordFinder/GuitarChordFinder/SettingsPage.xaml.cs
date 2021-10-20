@@ -22,8 +22,52 @@ namespace GuitarChordFinder
             InitializeComponent();
             BindingContext = options;
             Options = options;
+
+            InitializeTuningTab();
+            InitializeOtherTab();
+        }
+
+        void InitializeTuningTab()
+        {
             foreach (Tone t in CurrentTuning(Options.Tuning))
                 AddRow(t);
+        }
+
+        void InitializeOtherTab()
+        {
+            maxFretPicker.StepValueChanged += MaxFretChanged;
+            requiredFingersPicker.StepValueChanged += RequiredFingersChanged;
+            fretRangePicker.StepValueChanged += FretRangeChanged;
+            InitializePickers();
+        }
+
+        void MaxFretChanged(int obj)
+        {
+            Options.MaxFret = obj;
+            maxFret.Text = obj.ToString();
+        }
+
+        void RequiredFingersChanged(int obj)
+        {
+            Options.RequiredFingers = obj;
+            requiredFingers.Text = obj.ToString();
+        }
+
+        void FretRangeChanged(int obj)
+        {
+            Options.FretRange = obj;
+            fretRange.Text = obj.ToString();
+        }
+
+        void InitializePickers()
+        {
+            MaxFretChanged(Options.MaxFret);
+            FretRangeChanged(Options.FretRange);
+            RequiredFingersChanged(Options.RequiredFingers);
+
+            maxFretPicker.Value = Options.MaxFret;
+            fretRangePicker.Value = Options.FretRange;
+            requiredFingersPicker.Value = Options.RequiredFingers;
         }
 
         List<Tone> CurrentTuning(int[] tuning)

@@ -10,9 +10,9 @@ namespace GuitarChordFinder
         public int[] _openEGuitartuning = new int[] { 4, 9, 14, 19, 23, 28 };
         public int[] _ukuleleTuning = new int[] { 7, 0, 4, 9 };
 
-        public int DefaultFretRange { get; set; }
-        public int DefaultRequiredFingers { get; set; }
-        public int DefaultMaxFret { get; set; }
+        public int DefaultFretRange { get; set; } = 4;
+        public int DefaultRequiredFingers { get; set; } = 4;
+        public int DefaultMaxFret { get; set; } = 20;
         public int[] DefaultTuning { get; set; } = new int[] { 28, 33, 38, 43, 47, 52 };
 
         public int FretRange { get; set; }
@@ -36,7 +36,10 @@ namespace GuitarChordFinder
         public void LoadPreferences()
         {
             if (!Preferences.ContainsKey("exists"))
+            {
+                ApplyDefault();
                 return;
+            }
             FretRange = Preferences.Get("FretRange", 4);
             RequiredFingers = Preferences.Get("RequiredFingers", 4);
             MaxFret = Preferences.Get("MaxFret", 20);
@@ -58,12 +61,16 @@ namespace GuitarChordFinder
 
         public void ResetPreferences()
         {
+            ApplyDefault();
+            NotifyChange();
+        }
+
+        void ApplyDefault()
+        { 
             FretRange = DefaultFretRange;
             MaxFret = DefaultMaxFret;
             Tuning = DefaultTuning;
             RequiredFingers = DefaultRequiredFingers;
-
-            NotifyChange();
         }
     }
 }

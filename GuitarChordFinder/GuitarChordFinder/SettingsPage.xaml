@@ -17,6 +17,36 @@
         </Grid>
     </ContentPage>
     <ContentPage Title="Other">
-        <Label HorizontalOptions="Center" VerticalOptions="Center" Margin="0, 0, 0, 50" FontSize="30" Text="Coming soon"></Label>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <StackLayout Grid.Row="0" Margin="20">
+                <Label Text="Maximal fret number" TextColor="DarkSlateGray" Margin="20"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label TextColor="DarkSlateGray" x:Name="maxFret" HorizontalOptions="Center" WidthRequest="30"></Label>
+                    <local:StepSlider HorizontalOptions="FillAndExpand" MinimumTrackColor="#0075D2" ThumbColor="#0075D2" MaximumTrackColor="Black" x:Name="maxFretPicker" Maximum="22" Minimum="4" StepValue="1"></local:StepSlider>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Row="1" Margin="20">
+                <Label Text="Maximal fret range" TextColor="DarkSlateGray" Margin="20"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label TextColor="DarkSlateGray" x:Name="fretRange" HorizontalOptions="Center" WidthRequest="30"></Label>
+                    <local:StepSlider HorizontalOptions="FillAndExpand" MinimumTrackColor="#0075D2" ThumbColor="#0075D2" MaximumTrackColor="Black" x:Name="fretRangePicker" Maximum="7" Minimum="3" StepValue="1"></local:StepSlider>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Grid.Row="2" Margin="20">
+                <Label Text="Required finger count" TextColor="DarkSlateGray" Margin="20"></Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label TextColor="DarkSlateGray" x:Name="requiredFingers" HorizontalOptions="Center" WidthRequest="30"></Label>
+                    <local:StepSlider HorizontalOptions="FillAndExpand" MinimumTrackColor="#0075D2" ThumbColor="#0075D2" MaximumTrackColor="Black" x:Name="requiredFingersPicker" Maximum="5" Minimum="3" StepValue="1"></local:StepSlider>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
     </ContentPage>
 </TabbedPage>
