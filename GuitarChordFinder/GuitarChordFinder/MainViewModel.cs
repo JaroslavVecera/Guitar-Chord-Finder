@@ -10,7 +10,7 @@ namespace GuitarChordFinder
     {
 
         public List<FingeringGroup> FingeringGroups { get; set; }
-        public FingeringOptions Options { get; private set; } = new FingeringOptions() { FretRange = 4, MaxFret = 20, RequiredFingers = 4 };
+        public FingeringOptions Options { get; private set; } = new FingeringOptions() { DefaultFretRange = 4, DefaultMaxFret = 20, DefaultRequiredFingers = 4 };
         Fret Fret { get; set; }
         public string Search { get; set; } = "";
         public string LastSearch { get; set; } = "";
