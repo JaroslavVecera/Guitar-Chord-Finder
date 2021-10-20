@@ -11,6 +11,9 @@ namespace GuitarChordFinder
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SettingsPage : TabbedPage
     {
+        int MinStrings { get { return 3; } }
+        int MaxStrings { get { return 8; } }
+
         FingeringOptions Options { get; set; }
         List<StringTuningView> Strings { get; } = new List<StringTuningView>();
 
@@ -44,9 +47,9 @@ namespace GuitarChordFinder
 
         private void OnPlusClicked(object sender, EventArgs e)
         {
-            if (Strings.Count < 8)
+            if (Strings.Count < MaxStrings)
                 AddRow(new Tone() { Name = 0, Octave = 0 });
-            if (Strings.Count == 8)
+            if (Strings.Count == MaxStrings)
                 addButton.IsEnabled = false;
         }
 
@@ -56,14 +59,19 @@ namespace GuitarChordFinder
             str.RemoveClicked += OnRemoveClicked;
             Strings.Add(str);
             rows.Children.Add(str);
+            Strings.ForEach(s => s.CanRemove = true);
         }
 
         private void OnRemoveClicked(StringTuningView obj)
         {
+            if (Strings.Count == MinStrings)
+                return;
             obj.RemoveClicked -= OnRemoveClicked;
             Strings.Remove(obj);
             rows.Children.Remove(obj);
             addButton.IsEnabled = true;
+            if (Strings.Count == MinStrings)
+                Strings.ForEach(s => s.CanRemove = false);
         }
     }
 }

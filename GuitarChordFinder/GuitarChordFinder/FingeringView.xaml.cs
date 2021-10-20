@@ -72,10 +72,11 @@ namespace GuitarChordFinder
         void CountConstants(int width, int height)
         {
             _viewWidth = Math.Min(Application.Current.MainPage.Width, Application.Current.MainPage.Height);
-            _firstStringX = _viewWidth * 0.2;
-            _lastStringX = _viewWidth * 0.8;
-            _firstFretY = _viewWidth * 0.2;
-            _cellSize = _viewWidth * 0.6 / (width - 1);
+            double diagramPadding = width > 3 ? _viewWidth * 0.2 : _viewWidth * 0.3;
+            _firstStringX = diagramPadding;
+            _lastStringX = _viewWidth  - diagramPadding;
+            _firstFretY = diagramPadding;
+            _cellSize = (_viewWidth - 2 * diagramPadding) / (width - 1);
             _lastFretY = _firstFretY + (height - 1) * _cellSize;
             _circleSize = _cellSize * 2 / 3;
             _barreBottom = _cellSize / 4 * 3;

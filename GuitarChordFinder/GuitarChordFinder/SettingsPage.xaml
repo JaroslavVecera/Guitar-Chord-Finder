@@ -8,7 +8,7 @@
         <Grid Margin="40">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="80" />
+                <RowDefinition Height="75" />
             </Grid.RowDefinitions>
             <ScrollView>
                 <StackLayout x:Name="rows" Margin="0,0,0,20"></StackLayout>

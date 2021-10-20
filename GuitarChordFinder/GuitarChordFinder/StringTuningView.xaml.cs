@@ -14,6 +14,9 @@ namespace GuitarChordFinder
     {
         Tone _tone;
         public Tone Tone { get { return _tone; } set { _tone = value; label.Text = value.ToString(); } }
+
+        public bool CanRemove { get { return removeButton.IsEnabled; } set { removeButton.IsEnabled = value; } }
+
         public event Action<StringTuningView> RemoveClicked;
 
         public StringTuningView(Tone initial)
