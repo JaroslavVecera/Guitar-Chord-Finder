@@ -39,16 +39,10 @@ namespace MyApp.Renderers
 
         protected void ThemeChanged()
         {
-            if (Application.Current.RequestedTheme != OSAppTheme.Dark)
-                return;
-
             var iconId = Resources.GetIdentifier("android:id/search_mag_icon", null, null);
             var icon = Control.FindViewById(iconId);
-            (icon as ImageView).SetColorFilter(Xamarin.Forms.Color.White.ToAndroid(), PorterDuff.Mode.SrcIn);
-
-            int searchViewCloseButtonId = Control.Resources.GetIdentifier("android:id/search_close_btn", null, null);
-            var closeIcon = Control.FindViewById(searchViewCloseButtonId);
-            (closeIcon as ImageView).SetColorFilter(Xamarin.Forms.Color.White.ToAndroid(), PorterDuff.Mode.SrcIn);
+            if (Application.Current.RequestedTheme == OSAppTheme.Dark)
+                (icon as ImageView).SetColorFilter(Xamarin.Forms.Color.LightGray.ToAndroid(), PorterDuff.Mode.SrcIn);
         }
     }
 }

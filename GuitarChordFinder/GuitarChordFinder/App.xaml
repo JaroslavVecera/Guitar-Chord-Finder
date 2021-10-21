@@ -1,21 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:GuitarChordFinder"
              x:Class="GuitarChordFinder.App">
     <Application.Resources>
         <!-- Light colors -->
         <Color x:Key="LightPrimaryColor">#0075D2</Color>
+        <Color x:Key="LightStringLabelColor">#0075D2</Color>
         <Color x:Key="LightSecondaryColor">#2196F3</Color>
         <Color x:Key="LightBackgroundColor">White</Color>
         <Color x:Key="LightTextColor">Black</Color>
         <Color x:Key="LightDiagramColor">Black</Color>
-
+        <Color x:Key="LightErrorLabelColor">DarkRed</Color>
+        <Color x:Key="LightRemoveButtonColor">MediumVioletRed</Color>
+        <Color x:Key="LightDialogColor">WhiteSmoke</Color>
+        <Color x:Key="LightMinimumTrackColor">#0075D2</Color>
+        <Color x:Key="LightThumbColor">#0075D2</Color>
+        <Color x:Key="LightMaximumTrackColor">Black</Color>
+        
         <!-- Dark colors -->
-        <Color x:Key="DarkPrimaryColor">Black</Color>
-        <Color x:Key="DarkBackgroundColor">#111</Color>
-        <Color x:Key="DarkSecondaryColor">#333</Color>
-        <Color x:Key="DarkTextColor">White</Color>
-        <Color x:Key="DarkDiagramColor">#777</Color>
+        <Color x:Key="DarkPrimaryColor">#181818</Color>
+        <Color x:Key="DarkBackgroundColor">#121212</Color>
+        <Color x:Key="DarkSecondaryColor">#202025</Color>
+        <Color x:Key="DarkTextColor">#BBB</Color>
+        <Color x:Key="DarkDiagramColor">#888</Color>
+        <Color x:Key="DarkSearchBarColor">#222</Color>
+        <Color x:Key="DarkErrorLabelColor">#401010</Color>
+        <Color x:Key="DarkRemoveButtonColor">#614</Color>
+        <Color x:Key="DarkStringLabelColor">#88B</Color>
+        <Color x:Key="DarkDialogColor">#252525</Color>
+        <Color x:Key="DarkMinimumTrackColor">#0055B2</Color>
+        <Color x:Key="DarkThumbColor">#0055B2</Color>
+        <Color x:Key="DarkMaximumTrackColor">White</Color>
 
         <!-- Styles -->
         <Style x:Key="HeaderStyle" TargetType="Frame">
@@ -28,54 +44,139 @@
                     Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
         </Style>
 
-        <Style x:Key="SearchStyle" TargetType="Frame">
+        <Style x:Key="SearchStyle" TargetType="SearchBar">
             <Setter Property="BackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkSearchBarColor}}" />
         </Style>
-
+        
         <Style TargetType="SearchBar">
             <Setter Property="TextColor"
                     Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" />
             <Setter Property="BackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource LightSecondaryColor}}" />
+                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkSearchBarColor}}" />
+            <Setter Property="CancelButtonColor"
+                    Value="{AppThemeBinding Light={StaticResource LightTextColor}, Dark={StaticResource DarkTextColor}}" />
         </Style>
-        
+
         <Style x:Key="LabelStyle" TargetType="Frame">
             <Setter Property="BackgroundColor"
                     Value="{AppThemeBinding Light={StaticResource LightSecondaryColor}, Dark={StaticResource DarkSecondaryColor}}" />
         </Style>
 
+        <Style x:Key="ErrorLabelStyle" TargetType="Frame">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightErrorLabelColor}, Dark={StaticResource DarkErrorLabelColor}}" />
+        </Style>
+
+        <Style x:Key="LabelTextStyle" TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkTextColor}}" />
+        </Style>
+
+        <Style x:Key="StringLabelStyle" TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightStringLabelColor}, Dark={StaticResource DarkStringLabelColor}}" />
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light=LightGray, Dark=#666}"/>
+        </Style>
+
+        <Style x:Key="RemoveButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightRemoveButtonColor}, Dark={StaticResource DarkRemoveButtonColor}}"/>
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkTextColor}}"/>
+        </Style>
+
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightSecondaryColor}, Dark={StaticResource DarkPrimaryColor}}" />
+            <Setter Property="BarTextColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkTextColor}}" />
+        </Style>
+
+        <Style TargetType="TabbedPage" x:Key="TabbedPageStyle">
+            <Setter Property="BarBackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightSecondaryColor}, Dark={StaticResource DarkPrimaryColor}}" />
+            <Setter Property="BarTextColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkTextColor}}" />
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkBackgroundColor}}" />
+        </Style>
+
+        <Style TargetType="ContentPage" x:Key="ContentPageStyle">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkBackgroundColor}}" />
+        </Style>
+
+        <Style x:Key="DialogStyle" TargetType="Grid">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightDialogColor}, Dark={StaticResource DarkDialogColor}}" />
+        </Style>
+
+        <Style TargetType="IndicatorView">
+            <Setter Property="IndicatorColor"
+                    Value="{AppThemeBinding Light=LightGray, Dark={StaticResource DarkDialogColor}}" />
+            <Setter Property="SelectedIndicatorColor"
+                    Value="{AppThemeBinding Light=DarkGray, Dark=DarkGray}" />
+        </Style>
+
+        <Style TargetType="local:StepSlider" x:Key="StepperStyle">
+            <Setter Property="MinimumTrackColor"
+                    Value="{AppThemeBinding Light={StaticResource LightMinimumTrackColor}, Dark={StaticResource DarkMinimumTrackColor}}" />
+            <Setter Property="ThumbColor"
+                    Value="{AppThemeBinding Light={StaticResource LightThumbColor}, Dark={StaticResource DarkThumbColor}}" />
+            <Setter Property="MaximumTrackColor"
+                    Value="{AppThemeBinding Light={StaticResource LightMaximumTrackColor}, Dark={StaticResource DarkMaximumTrackColor}}" />
+        </Style>
+
+        <Style x:Key="OtherSettingsLabelStyle" TargetType="Label">
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light=DarkSlateGray, Dark={StaticResource DarkTextColor}}" />
+        </Style>
+
+        <Style x:Key="PlusButtonStyle" TargetType="Button">
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light=#18b378, Dark=#084338}"/>
+            <Setter Property="TextColor"
+                    Value="{AppThemeBinding Light=White, Dark={StaticResource DarkTextColor}}"/>
+        </Style>
+
+        <!-- !!!!!!!!!!!!!!  HARDCODED DIAGRAM COLOR DUE TO SOME XAMARIN BUG  !!!!!!!!!!!!!!!!!!!-->
+
         <Style TargetType="Line">
             <Setter Property="StrokeThickness" Value="4" />
             <Setter Property="Stroke"
-                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+                    Value="{AppThemeBinding Light=Black, Dark=#999}" />
         </Style>
 
         <Style TargetType="Path">
             <Setter Property="Fill"
-                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+                    Value="{AppThemeBinding Light=Black, Dark=#999}" />
         </Style>
 
         <Style TargetType="Polyline">
             <Setter Property="StrokeThickness" Value="4" />
             <Setter Property="Stroke"
-                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+                    Value="{AppThemeBinding Light=Black, Dark=#999}" />
         </Style>
 
         <Style x:Key="FullCircleStyle" TargetType="Ellipse">
             <Setter Property="Fill"
-                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+                    Value="{AppThemeBinding Light=Black, Dark=#999}" />
         </Style>
 
         <Style TargetType="Label">
             <Setter Property="TextColor"
-                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+                    Value="{AppThemeBinding Light=Black, Dark=#999}" />
         </Style>
 
         <Style x:Key="EmptyCircleStyle" TargetType="Ellipse">
             <Setter Property="StrokeThickness" Value="4" />
             <Setter Property="Stroke"
-                    Value="{AppThemeBinding Light=Black, Dark=#777}" />
+                    Value="{AppThemeBinding Light=Black, Dark=#999}" />
         </Style>
     </Application.Resources>
 </Application>

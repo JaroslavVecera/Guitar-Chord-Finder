@@ -23,14 +23,14 @@
                         Placeholder="Search chords...">
                     </SearchBar>
                 </Frame>
-                <ImageButton Source="settings_picture.xml" Grid.Column="1" Clicked="OnSettingsClicked" BackgroundColor="Transparent" WidthRequest="27" VerticalOptions="Fill"></ImageButton>
+                <ImageButton Source="{AppThemeBinding Light=settings_picture.xml, Dark=settings_picture_dark.xml}" Grid.Column="1" Clicked="OnSettingsClicked" BackgroundColor="Transparent" WidthRequest="27" VerticalOptions="Fill"></ImageButton>
             </Grid>
         </Frame>
         <Frame IsVisible="{Binding LabelVisibility}" CornerRadius="0" Style="{StaticResource LabelStyle}" Padding="5">
-            <Label HorizontalOptions="StartAndExpand" Padding="65,0" TextColor="White" FontSize="20" Text="{Binding Label}" />
+            <Label HorizontalOptions="StartAndExpand" Style="{StaticResource LabelTextStyle}" Padding="65,0" FontSize="20" Text="{Binding Label}" />
         </Frame>
-        <Frame IsVisible="{Binding ErrorLabelVisibility}" CornerRadius="0" BackgroundColor="DarkRed" Padding="5">
-            <Label HorizontalOptions="StartAndExpand" Padding="65,0" TextColor="White" FontSize="20" Text="{Binding ErrorLabel}" />
+        <Frame IsVisible="{Binding ErrorLabelVisibility}" CornerRadius="0" Style="{StaticResource ErrorLabelStyle}" Padding="5">
+            <Label HorizontalOptions="StartAndExpand" Style="{StaticResource LabelTextStyle}" Padding="65,0" FontSize="20" Text="{Binding ErrorLabel}" />
         </Frame>
         <CollectionView x:Name="FingeringsList" ItemsSource="{Binding FingeringGroups}" SelectionMode="None" VerticalScrollBarVisibility="Always">
             <CollectionView.ItemTemplate>

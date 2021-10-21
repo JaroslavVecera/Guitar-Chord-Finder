@@ -3,6 +3,7 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:local="clr-namespace:GuitarChordFinder;assembly=GuitarChordFinder"
             x:Class="GuitarChordFinder.SettingsPage"
+            Style="{StaticResource TabbedPageStyle}"
             Title="Settings">
     <ContentPage Title="Tuning">
         <Grid Margin="40">
@@ -13,7 +14,7 @@
             <ScrollView>
                 <StackLayout x:Name="rows" Margin="0,0,0,20"></StackLayout>
             </ScrollView>
-            <Button Grid.Row="1" Margin="0, 20, 0, 0" BackgroundColor="#18b378" x:Name="addButton" FontSize="Title" CornerRadius="100"  Clicked="OnPlusClicked" TextColor="White" Text="+"></Button>
+            <Button Style="{StaticResource PlusButtonStyle}" Grid.Row="1" Margin="0, 20, 0, 0" x:Name="addButton" FontSize="Title" CornerRadius="100"  Clicked="OnPlusClicked" Text="+"></Button>
         </Grid>
     </ContentPage>
     <ContentPage Title="Other">
@@ -25,26 +26,26 @@
             </Grid.RowDefinitions>
 
             <StackLayout Grid.Row="0" Margin="20">
-                <Label Text="Maximal fret number" TextColor="DarkSlateGray" Margin="20"></Label>
+                <Label Text="Maximal fret number" Style="{StaticResource OtherSettingsLabelStyle}"  Margin="20"></Label>
                 <StackLayout Orientation="Horizontal">
-                    <Label TextColor="DarkSlateGray" x:Name="maxFret" HorizontalOptions="Center" WidthRequest="30"></Label>
-                    <local:StepSlider HorizontalOptions="FillAndExpand" MinimumTrackColor="#0075D2" ThumbColor="#0075D2" MaximumTrackColor="Black" x:Name="maxFretPicker" Maximum="22" Minimum="4" StepValue="1"></local:StepSlider>
+                    <Label Style="{StaticResource OtherSettingsLabelStyle}" x:Name="maxFret" HorizontalOptions="Center" WidthRequest="30"></Label>
+                    <local:StepSlider Style="{StaticResource StepperStyle}" HorizontalOptions="FillAndExpand" x:Name="maxFretPicker" Maximum="22" Minimum="4" StepValue="1"></local:StepSlider>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout Grid.Row="1" Margin="20">
-                <Label Text="Maximal fret range" TextColor="DarkSlateGray" Margin="20"></Label>
+                <Label Text="Maximal fret range" Style="{StaticResource OtherSettingsLabelStyle}" Margin="20"></Label>
                 <StackLayout Orientation="Horizontal">
-                    <Label TextColor="DarkSlateGray" x:Name="fretRange" HorizontalOptions="Center" WidthRequest="30"></Label>
-                    <local:StepSlider HorizontalOptions="FillAndExpand" MinimumTrackColor="#0075D2" ThumbColor="#0075D2" MaximumTrackColor="Black" x:Name="fretRangePicker" Maximum="7" Minimum="3" StepValue="1"></local:StepSlider>
+                    <Label Style="{StaticResource OtherSettingsLabelStyle}" x:Name="fretRange" HorizontalOptions="Center" WidthRequest="30"></Label>
+                    <local:StepSlider HorizontalOptions="FillAndExpand" Style="{StaticResource StepperStyle}" x:Name="fretRangePicker" Maximum="7" Minimum="3" StepValue="1"></local:StepSlider>
                 </StackLayout>
             </StackLayout>
 
             <StackLayout Grid.Row="2" Margin="20">
-                <Label Text="Required finger count" TextColor="DarkSlateGray" Margin="20"></Label>
+                <Label Text="Required finger count" Style="{StaticResource OtherSettingsLabelStyle}" Margin="20"></Label>
                 <StackLayout Orientation="Horizontal">
-                    <Label TextColor="DarkSlateGray" x:Name="requiredFingers" HorizontalOptions="Center" WidthRequest="30"></Label>
-                    <local:StepSlider HorizontalOptions="FillAndExpand" MinimumTrackColor="#0075D2" ThumbColor="#0075D2" MaximumTrackColor="Black" x:Name="requiredFingersPicker" Maximum="5" Minimum="3" StepValue="1"></local:StepSlider>
+                    <Label Style="{StaticResource OtherSettingsLabelStyle}" x:Name="requiredFingers" HorizontalOptions="Center" WidthRequest="30"></Label>
+                    <local:StepSlider HorizontalOptions="FillAndExpand"  Style="{StaticResource StepperStyle}" x:Name="requiredFingersPicker" Maximum="5" Minimum="3" StepValue="1"></local:StepSlider>
                 </StackLayout>
             </StackLayout>
         </Grid>

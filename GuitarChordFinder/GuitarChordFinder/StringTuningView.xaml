@@ -4,9 +4,9 @@
              x:Class="GuitarChordFinder.StringTuningView">
     <ContentView.Content>
         <StackLayout Orientation="Horizontal">
-            <Label TextColor="#0075D2" FontSize="18" VerticalTextAlignment="Center" x:Name="label" HorizontalOptions="FillAndExpand"></Label>
-            <Button Clicked="OnChangeClicked" CornerRadius="500" HeightRequest="40" Text="change" BackgroundColor="LightGray"></Button>
-            <Button x:Name="removeButton" Clicked="OnRemoveClicked" CornerRadius="500" HeightRequest="40" WidthRequest="40" Text="x" BackgroundColor="MediumVioletRed" TextColor="White"></Button>
+            <Label Style="{StaticResource StringLabelStyle}"  FontSize="18" VerticalTextAlignment="Center" x:Name="label" HorizontalOptions="FillAndExpand"></Label>
+            <Button Clicked="OnChangeClicked" CornerRadius="500" HeightRequest="40" Text="change"></Button>
+            <Button x:Name="removeButton" Clicked="OnRemoveClicked" CornerRadius="500" HeightRequest="40" WidthRequest="40" Text="x" Style="{StaticResource RemoveButtonStyle}"></Button>
         </StackLayout>
     </ContentView.Content>
 </ContentView>
