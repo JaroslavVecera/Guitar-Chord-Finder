@@ -114,9 +114,19 @@ namespace GuitarChordFinder
 
         bool SetFingersAreEnaught(Pattern p)
         {
-            if (p.Frets.Count(f => f > 0) <= Options.RequiredFingers)
+            int count = p.Frets.Count(f => f > 0);
+            if (count <= Options.RequiredFingers)
+            {
+                if (count >= 4 && SetFingersAreEnaughtWithBarre(p) && p.Frets.Count(f => f == p.Min) > 1)
+                    p.Barre = true;
                 return true;
+            }
             p.Barre = true;
+            return SetFingersAreEnaughtWithBarre(p);
+        }
+
+        bool SetFingersAreEnaughtWithBarre(Pattern p)
+        {
             int min = p.Min;
             int barreIndex = p.Frets.ToList().IndexOf(min);
             return !p.Frets.ToList().GetRange(barreIndex, p.Frets.Count() - barreIndex).Contains(0) && (p.Frets.Count(f => f > min) + 1 <= Options.RequiredFingers);
